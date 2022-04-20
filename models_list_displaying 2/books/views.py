@@ -28,15 +28,15 @@ def books_on_date_view(request, slug):
     neighbor_pages = dict()
 
     if 0 < index_page < len(pages)-1:
-        neighbor_pages['<'] = str(pages[index_page-1])
-        neighbor_pages['>'] = str(pages[index_page+1])
+        neighbor_pages['<'] = pages[index_page-1]
+        neighbor_pages['>'] = pages[index_page+1]
     elif index_page == 0:
-        neighbor_pages['>'] = str(pages[index_page+1])
+        neighbor_pages['>'] = pages[index_page+1]
     elif index_page == len(pages)-1:
-        neighbor_pages['<'] = str(pages[index_page-1])
+        neighbor_pages['<'] = pages[index_page-1]
 
     context = {'books': books,
                'pages': neighbor_pages,
-               'date': slug}
+               'date': current_date}
 
     return render(request, template, context)
